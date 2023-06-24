@@ -12,16 +12,26 @@ export const App = () => {
     setCount(count - 1);
   };
 
+  const handleReset = () => {
+    setCount(0);
+  };
+
   return (
     <div className='App'>
       <div>
         <h2>Счетчик:</h2>
         <h1>{count}</h1>
-        <button onClick={dicrement} className='minus'>
+        <button
+          onClick={dicrement}
+          className='minus'
+          disabled={count <= 0 ? true : false}>
           - Минус
         </button>
         <button onClick={increment} className='plus'>
           Плюс +
+        </button>
+        <button onClick={handleReset} className='reset'>
+          Сброс
         </button>
       </div>
     </div>
