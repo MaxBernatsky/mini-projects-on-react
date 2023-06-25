@@ -2,37 +2,37 @@ import { useState } from 'react';
 import './index.scss';
 
 export const App = () => {
-  const [count, setCount] = useState<number>(0);
+  const [open, setOpen] = useState<boolean>(false);
 
-  const increment = () => {
-    setCount(count + 1);
+  const openModal = () => {
+    setOpen(true);
   };
 
-  const dicrement = () => {
-    setCount(count - 1);
-  };
-
-  const handleReset = () => {
-    setCount(0);
+  const closeModal = () => {
+    setOpen(false);
   };
 
   return (
     <div className='App'>
-      <div>
-        <h2>Счетчик:</h2>
-        <h1>{count}</h1>
-        <button
-          onClick={dicrement}
-          className='minus'
-          disabled={count <= 0 ? true : false}>
-          - Минус
-        </button>
-        <button onClick={increment} className='plus'>
-          Плюс +
-        </button>
-        <button onClick={handleReset} className='reset'>
-          Сброс
-        </button>
+      <button onClick={openModal} className='open-modal-btn'>
+        ✨ Открыть окно
+      </button>
+
+      <div className={`overlay animated ${open ? 'show' : ''}`}>
+        <div className='modal'>
+          <svg
+            onClick={closeModal}
+            height='200'
+            viewBox='0 0 200 200'
+            width='200'>
+            <title />
+            <path d='M114,100l49-49a9.9,9.9,0,0,0-14-14L100,86,51,37A9.9,9.9,0,0,0,37,51l49,49L37,149a9.9,9.9,0,0,0,14,14l49-49,49,49a9.9,9.9,0,0,0,14-14Z' />
+          </svg>
+          <img
+            src='https://media2.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif'
+            alt='gif'
+          />
+        </div>
       </div>
     </div>
   );
